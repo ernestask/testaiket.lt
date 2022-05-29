@@ -1,0 +1,3 @@
+CREATE TABLE questions (id INTEGER PRIMARY KEY ON CONFLICT IGNORE, text TEXT NOT NULL, image BLOB);
+CREATE TABLE answers (question_id INTEGER NOT NULL, number INTEGER NOT NULL, text TEXT NOT NULL, correct BOOLEAN NOT NULL, FOREIGN KEY (question_id) REFERENCES questions (id), PRIMARY KEY (question_id, number) ON CONFLICT IGNORE);
+CREATE TABLE explanations (question_id INTEGER PRIMARY KEY ON CONFLICT IGNORE, text TEXT, FOREIGN KEY (question_id) REFERENCES questions (id));
